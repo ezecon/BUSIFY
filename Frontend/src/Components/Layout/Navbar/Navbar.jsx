@@ -14,6 +14,7 @@ import {
 import { Link } from "react-router-dom";
 import { FaIceCream,FaCartPlus } from "react-icons/fa";
 import { MdTableRestaurant } from "react-icons/md";
+import { FaBus } from "react-icons/fa6";
 
 export function NavMenu() {
 
@@ -31,45 +32,8 @@ export function NavMenu() {
 
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="flex items-center gap-x-2 p-1 font-medium text-white"
-      >
-        <div className="flex">
-          <MdTableRestaurant className="pr-1 text-2xl"/>
-        <a href="/reservation" className="flex items-center">
-          Reservation
-        </a>
-        </div>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="flex items-center gap-x-2 p-1 font-medium text-white"
-      >
-        <div className="flex">
-          <FaIceCream className="pr-1 text-2xl"/>
-        <a href="/products" className="flex items-center">
-          Order Now
-        </a>
-        </div>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="flex items-center gap-x-2 p-1 font-medium text-white"
-      >
-        <div className="flex">
-          <FaCartPlus className="pr-1 text-2xl"/>
-        <a href="/cart" className="flex items-center">
-          Cart
-        </a>
-        </div>
-      </Typography>
+      
+      {/*here*/}
     </ul>
   );
 
@@ -81,7 +45,7 @@ export function NavMenu() {
           href="#"
           className="mr-4 cursor-pointer py-1.5 font-medium playwrite-gb-s-regular"
         >
-         <Link to="/"> <span className="crimson">H</span>alal <span className="crimson">B</span>rothers</Link>
+         <Link to="/" className="flex gap-2"><span className="text-[goldenrod] font-bold font-playwrite-gb-s"> BUSIFY</span> <FaBus className="text-xl text-[goldenrod]"/> </Link>
         </Typography>
         <div className="hidden lg:block">{navList}</div>
         <div className="flex items-center gap-x-1">
