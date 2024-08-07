@@ -12,16 +12,22 @@ import {
   MenuItem,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
-import { FaIceCream, FaCartPlus } from "react-icons/fa";
-import { MdTableRestaurant } from "react-icons/md";
 import { FaBus } from "react-icons/fa6";
 
 export function NavMenu() {
   const [openNav, setOpenNav] = useState(false);
-  const [data, setData] = useState(false);
+  const [data, setData] = useState(true); // This should be managed based on actual authentication data
 
   useEffect(() => {
-    window.addEventListener("resize", () => window.innerWidth >= 960 && setOpenNav(false));
+    const handleResize = () => {
+      if (window.innerWidth >= 960) setOpenNav(false);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const navList = (
@@ -75,7 +81,7 @@ export function NavMenu() {
           </Link>
         </Typography>
         <div className="hidden lg:block">{navList}</div>
-        <div className="flex items-center gap-x-1">
+        <div className="hidden lg:flex items-center gap-x-1">
           {profile}
         </div>
         <IconButton
@@ -120,16 +126,7 @@ export function NavMenu() {
         <div className="container mx-auto">
           {navList}
           <div className="flex items-center gap-x-1">
-            <Link to="/login">
-              <Button fullWidth variant="text" size="sm" className="text-white">
-                <span>Log In</span>
-              </Button>
-            </Link>
-            <Link to="/register">
-              <Button fullWidth variant="text" size="sm" className="text-white">
-                <span>Sign In</span>
-              </Button>
-            </Link>
+            {profile}
           </div>
         </div>
       </MobileNav>
