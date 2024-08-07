@@ -12,29 +12,53 @@ import {
   MenuItem,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
-import { FaIceCream,FaCartPlus } from "react-icons/fa";
+import { FaIceCream, FaCartPlus } from "react-icons/fa";
 import { MdTableRestaurant } from "react-icons/md";
 import { FaBus } from "react-icons/fa6";
 
 export function NavMenu() {
-
-
- 
   const [openNav, setOpenNav] = useState(false);
-  const [data, setdata] = useState(true);
+  const [data, setData] = useState(false);
 
   useEffect(() => {
-    window.addEventListener(
-      "resize",
-      () => window.innerWidth >= 960 && setOpenNav(false),
-    );
+    window.addEventListener("resize", () => window.innerWidth >= 960 && setOpenNav(false));
   }, []);
 
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-      
-      {/*here*/}
+      {/* Navigation items here */}
     </ul>
+  );
+
+  const profile = data ? (
+    <Menu>
+      <MenuHandler>
+        <Avatar
+          src={'https://i.pinimg.com/736x/0d/64/98/0d64989794b1a4c9d89bff571d3d5842.jpg'}
+          alt="avatar"
+          withBorder={true}
+          className="p-0.5 border-red-50"
+        />
+      </MenuHandler>
+      <MenuList>
+        <Link to="/profile"><MenuItem>Profile</MenuItem></Link>
+        <Link to="/dashboard"><MenuItem>Dashboard</MenuItem></Link>
+        <MenuItem>Logout</MenuItem>
+      </MenuList>
+    </Menu>
+  ) : (
+    <>
+      <Link to="/login">
+        <Button variant="text" size="sm" className="hidden lg:inline-block text-white">
+          <span>Log In</span>
+        </Button>
+      </Link>
+      <Link to="/register">
+        <Button variant="gradient" size="sm" className="hidden lg:inline-block check-button">
+          <span>Sign In</span>
+        </Button>
+      </Link>
+    </>
   );
 
   return (
@@ -45,41 +69,14 @@ export function NavMenu() {
           href="#"
           className="mr-4 cursor-pointer py-1.5 font-medium playwrite-gb-s-regular"
         >
-         <Link to="/" className="flex gap-2"><span className="text-[goldenrod] font-bold font-playwrite-gb-s"> BUSIFY</span> <FaBus className="text-xl text-[goldenrod]"/> </Link>
+          <Link to="/" className="flex gap-2">
+            <span className="text-[goldenrod] font-bold font-playwrite-gb-s">BUSIFY</span>
+            <FaBus className="text-xl text-[goldenrod]" />
+          </Link>
         </Typography>
         <div className="hidden lg:block">{navList}</div>
         <div className="flex items-center gap-x-1">
-          {data ? (
-            
-            <Menu>
-                  <MenuHandler>
-                  <Avatar
-                         src={'https://i.pinimg.com/736x/0d/64/98/0d64989794b1a4c9d89bff571d3d5842.jpg'}
-                          alt="avatar"
-                          withBorder={true}
-                          className="p-0.5 border-red-50"
-                        />
-                  </MenuHandler>
-                  <MenuList>
-                    <Link to="/profile"><MenuItem>Profile</MenuItem></Link>
-                    <Link to="/dashboard"><MenuItem>Dashboard</MenuItem></Link>
-                    <MenuItem >Logout</MenuItem>
-                  </MenuList>
-           </Menu>
-          ) : (
-            <>
-              <Link to="/login">
-                <Button variant="text" size="sm" className="hidden lg:inline-block text-white">
-                  <span>Log In</span>
-                </Button>
-              </Link>
-              <Link to="/register">
-                <Button variant="gradient" size="sm" className="hidden lg:inline-block check-button">
-                  <span>Sign In</span>
-                </Button>
-              </Link>
-            </>
-          )}
+          {profile}
         </div>
         <IconButton
           variant="text"
